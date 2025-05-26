@@ -2337,6 +2337,7 @@ MonoBehaviour:
   BottomClamp: -10
   CameraAngleOverride: 0
   LockCameraPosition: 0
+  isAimMove: 0
 --- !u!143 &3899631764470319861
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3622,6 +3623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimCam: {fileID: 257072020552137235}
   aimImage: {fileID: 765083164}
+  aimObj: {fileID: 585627697}
+  aimObjDis: 20
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
