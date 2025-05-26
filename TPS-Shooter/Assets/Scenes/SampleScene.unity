@@ -540,6 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPoint: {fileID: 1293916338}
   bulletObj: {fileID: 5341742223406746680, guid: 9c3cddd6060b7cc4eadfb9cefcf6e7db, type: 3}
+  weaponFlashFX: {fileID: 759698728042247689, guid: 04f3a681146818c4986a34c368f8d489, type: 3}
 --- !u!4 &509229187
 Transform:
   m_ObjectHideFlags: 0
@@ -1371,13 +1372,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1293916337}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.67, y: 0.085, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5747602828206595075}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &1441692744
 PrefabInstance:
   m_ObjectHideFlags: 0
