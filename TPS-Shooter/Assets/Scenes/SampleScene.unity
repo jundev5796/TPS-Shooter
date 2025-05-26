@@ -540,7 +540,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPoint: {fileID: 1293916338}
   bulletObj: {fileID: 5341742223406746680, guid: 9c3cddd6060b7cc4eadfb9cefcf6e7db, type: 3}
+  maxShootDelay: 0.1
+  currentShootDelay: 0.2
   weaponFlashFX: {fileID: 759698728042247689, guid: 04f3a681146818c4986a34c368f8d489, type: 3}
+  bulletCasePoint: {fileID: 2133173837}
+  bulletCaseFX: {fileID: 8495975452237432198, guid: 407fcd217061eee409129cb9021f8337, type: 3}
 --- !u!4 &509229187
 Transform:
   m_ObjectHideFlags: 0
@@ -1719,6 +1723,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5747602828206595075}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
+--- !u!1 &2133173836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2133173837}
+  m_Layer: 0
+  m_Name: Bullet_Case_Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2133173837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133173836}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.125, y: 0.085, z: 0.035}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5747602828206595075}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7907126548325359
 Transform:
   m_ObjectHideFlags: 0
@@ -3866,6 +3901,7 @@ Transform:
   - {fileID: 2066720043}
   - {fileID: 19800016}
   - {fileID: 1293916338}
+  - {fileID: 2133173837}
   m_Father: {fileID: 8999831994517447837}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
 --- !u!1 &5829571996090790918
