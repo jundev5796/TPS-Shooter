@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     private StarterAssetsInputs input;
+    private ThirdPersonController controller;
 
     [Header("Aim")]
     [SerializeField] private CinemachineVirtualCamera aimCam;
@@ -16,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         input = GetComponent<StarterAssetsInputs>();
+        controller = GetComponent<ThirdPersonController>();
     }
 
     void Update()
@@ -27,8 +29,11 @@ public class PlayerManager : MonoBehaviour
     {
         if (input.aim)
         {
+            AimControl(true);
+
             aimCam.gameObject.SetActive(true);
             aimImage.SetActive(true);
+            controller.isAimMove = true;
 
             Vector3 targetPosition = Vector3.zero;
             Transform camTransform = Camera.main.transform;
@@ -54,8 +59,14 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            aimCam.gameObject.SetActive(false);
-            aimImage.SetActive(false);
+            AimControl(false);
         }
+    }
+
+    private void AimControl(bool isCheck)
+    {
+        aimCam.gameObject.SetActive(false);
+        aimImage.SetActive(false);
+        controller.isAimMove = false;
     }
 }
