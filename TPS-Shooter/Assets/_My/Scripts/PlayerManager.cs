@@ -29,6 +29,26 @@ public class PlayerManager : MonoBehaviour
 
     private void AimCheck()
     {
+        if (input.reload)
+        {
+            input.reload = false;
+
+            if (controller.isReload)
+            {
+                return;
+            }
+
+            AimControl(false);
+            anim.SetLayerWeight(1, 1);
+            anim.SetTrigger("Reload");
+            controller.isReload = true;
+        }
+
+        if (controller.isReload)
+        {
+            return;
+        }
+
         if (input.aim)
         {
             AimControl(true);
@@ -60,6 +80,15 @@ public class PlayerManager : MonoBehaviour
             Vector3 aimDir = (targetAim - transform.position).normalized;
 
             transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 50f);
+
+            if (input.shoot)
+            {
+                anim.SetBool("Shoot", true);
+            }
+            else
+            {
+                anim.SetBool("Shoot", false);
+            }
         }
         else
         {
@@ -74,5 +103,12 @@ public class PlayerManager : MonoBehaviour
         aimCam.gameObject.SetActive(false);
         aimImage.SetActive(false);
         controller.isAimMove = false;
+    }
+
+    public void Reload()
+    {
+        Debug.Log("Reload");
+        controller.isReload = false;
+        anim.SetLayerWeight(1, 0);
     }
 }

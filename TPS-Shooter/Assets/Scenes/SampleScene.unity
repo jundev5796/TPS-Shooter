@@ -1498,6 +1498,8 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   aim: 0
+  shoot: 0
+  reload: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -2590,6 +2592,7 @@ MonoBehaviour:
   CameraAngleOverride: 0
   LockCameraPosition: 0
   isAimMove: 0
+  isReload: 0
 --- !u!143 &3899631764470319861
 CharacterController:
   m_ObjectHideFlags: 0
