@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Aim")]
     [SerializeField] private CinemachineVirtualCamera aimCam;
+    [SerializeField] private GameObject aimImage;
 
     void Start()
     {
@@ -16,13 +17,20 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
+        AimCheck();
+    }
+
+    private void AimCheck()
+    {
         if (input.aim)
         {
             aimCam.gameObject.SetActive(true);
+            aimImage.SetActive(true);
         }
         else
         {
             aimCam.gameObject.SetActive(false);
+            aimImage.SetActive(false);
         }
     }
 }
