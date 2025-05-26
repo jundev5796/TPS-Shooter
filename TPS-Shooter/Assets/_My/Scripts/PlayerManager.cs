@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     private StarterAssetsInputs input;
     private ThirdPersonController controller;
+    private Animator anim;
 
     [Header("Aim")]
     [SerializeField] private CinemachineVirtualCamera aimCam;
@@ -18,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     {
         input = GetComponent<StarterAssetsInputs>();
         controller = GetComponent<ThirdPersonController>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -30,6 +32,8 @@ public class PlayerManager : MonoBehaviour
         if (input.aim)
         {
             AimControl(true);
+
+            anim.SetLayerWeight(1, 1);
 
             aimCam.gameObject.SetActive(true);
             aimImage.SetActive(true);
@@ -60,6 +64,8 @@ public class PlayerManager : MonoBehaviour
         else
         {
             AimControl(false);
+
+            anim.SetLayerWeight(1, 0);
         }
     }
 
