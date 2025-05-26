@@ -1,6 +1,7 @@
 using Cinemachine;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject aimObj;
     [SerializeField] private float aimObjDis = 10f;
     [SerializeField] private LayerMask targetLayer;
+
+    [Header("IK")]
+    [SerializeField] private Rig handRig;
+    [SerializeField] private Rig aimRig;
 
     void Start()
     {
@@ -39,6 +44,7 @@ public class PlayerManager : MonoBehaviour
             }
 
             AimControl(false);
+            SetRigWeight(0);
             anim.SetLayerWeight(1, 1);
             anim.SetTrigger("Reload");
             controller.isReload = true;
@@ -81,6 +87,8 @@ public class PlayerManager : MonoBehaviour
 
             transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 50f);
 
+            SetRigWeight(1);
+
             if (input.shoot)
             {
                 anim.SetBool("Shoot", true);
@@ -93,8 +101,9 @@ public class PlayerManager : MonoBehaviour
         else
         {
             AimControl(false);
-
+            SetRigWeight(0);
             anim.SetLayerWeight(1, 0);
+            anim.SetBool("Shoot", false);
         }
     }
 
@@ -107,8 +116,16 @@ public class PlayerManager : MonoBehaviour
 
     public void Reload()
     {
-        Debug.Log("Reload");
+        //Debug.Log("Reload");
         controller.isReload = false;
+        SetRigWeight(1);
         anim.SetLayerWeight(1, 0);
     }
+
+    private void SetRigWeight(float weight)
+    {
+        aimRig.weight = weight;
+        handRig.weight = weight;
+    }
 }
+
