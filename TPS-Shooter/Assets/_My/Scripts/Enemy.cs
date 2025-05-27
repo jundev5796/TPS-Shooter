@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -13,10 +14,16 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
 
+    private GameObject targetPlayer;
+    private float targetDelay = 0.5f;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+
+        targetPlayer = GameObject.FindWithTag("Player");
+
         InitEnemyHP();
     }
 
@@ -28,6 +35,33 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(EnemyDie());
             return;
+        }
+
+        if (targetPlayer != null)
+        {
+            float maxDelay = 0.5f;
+            targetDelay += Time.deltaTime;
+
+            if (targetDelay < maxDelay)
+            {
+                return;
+            }
+
+            agent.destination = targetPlayer.transform.position;
+            transform.LookAt(targetPlayer.transform.position);
+
+            bool isRange = Vector3.Distance(transform.position, targetPlayer.transform.position) <= agent.stoppingDistance;
+
+            if (isRange)
+            {
+                anim.SetTrigger("Attack");
+            }
+            else
+            {
+                anim.SetFloat("MoveSpeed", agent.velocity.magnitude);
+            }
+
+            targetDelay = 0;
         }
     }
 
