@@ -37,6 +37,13 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.isReady)
+        {
+            AimControl(false);
+            SetRigWeight(0);
+            return;
+        }
+
         AimCheck();
     }
 
