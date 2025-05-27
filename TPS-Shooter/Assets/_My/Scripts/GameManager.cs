@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject weaponClipFX;
 
     [Header("Enemy")]
-    [SerializeField] GameObject enemy;
-    [SerializeField] GameObject[] spawnPoint;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private GameObject[] spawnPoint;
 
     void Start()
     {
@@ -103,6 +103,8 @@ public class GameManager : MonoBehaviour
     IEnumerator EnemySpawn()
     {
         Instantiate(enemy, spawnPoint[Random.Range(0, spawnPoint.Length)].transform.position, Quaternion.identity);
+        //GameObject enemy = PoolManager.instance.ActivateObj(4);
+        //SetObjPosition(enemy, spawnPoint[Random.Range(0, spawnPoint.Length)].transform);
 
         yield return new WaitForSeconds(2f);
 
