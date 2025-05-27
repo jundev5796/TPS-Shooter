@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject weaponFlashFX;
     [SerializeField] private Transform bulletCasePoint;
     [SerializeField] private GameObject bulletCaseFX;
+    [SerializeField] private Transform weaponClipPoint;
+    [SerializeField] private GameObject weaponClipFX;
 
     void Start()
     {
@@ -41,5 +43,10 @@ public class GameManager : MonoBehaviour
 
         Vector3 aim = (targetPosition - bulletPoint.position).normalized;
         Instantiate(bulletObj, bulletPoint.position, Quaternion.LookRotation(aim, Vector3.up));
+    }
+
+    public void ReloadClip()
+    {
+        Instantiate(weaponClipFX, weaponClipPoint);
     }
 }
