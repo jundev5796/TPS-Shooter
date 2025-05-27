@@ -43,22 +43,39 @@ public class GameManager : MonoBehaviour
 
         currentBullet -= 1;
         currentShootDelay = 0;
-
-        Instantiate(weaponFlashFX, bulletPoint);
-        Instantiate(bulletCaseFX, bulletCasePoint);
-
         Vector3 aim = (targetPosition - bulletPoint.position).normalized;
-        Instantiate(bulletObj, bulletPoint.position, Quaternion.LookRotation(aim, Vector3.up));
+
+        //Instantiate(weaponFlashFX, bulletPoint);
+        GameObject flashFX = PoolManager.instance.ActivateObj(1);
+        SetObjPosition(flashFX, bulletPoint);
+        flashFX.transform.rotation = Quaternion.LookRotation(aim, Vector3.up);
+
+        //Instantiate(bulletCaseFX, bulletCasePoint);
+        GameObject caseFX = PoolManager.instance.ActivateObj(2);
+        SetObjPosition(caseFX, bulletCasePoint);
+
+        //Instantiate(bulletObj, bulletPoint.position, Quaternion.LookRotation(aim, Vector3.up));
+        GameObject prefabToSpawn = PoolManager.instance.ActivateObj(0);
+        SetObjPosition(prefabToSpawn, bulletPoint);
+        prefabToSpawn.transform.rotation = Quaternion.LookRotation(aim, Vector3.up);
     }
 
     public void ReloadClip()
     {
-        Instantiate(weaponClipFX, weaponClipPoint);
+        //Instantiate(weaponClipFX, weaponClipPoint);
+        GameObject clipFX = PoolManager.instance.ActivateObj(3);
+        SetObjPosition(clipFX, weaponClipPoint);
+
         InitBullet();
     }
 
     private void InitBullet()
     {
         currentBullet = maxBullet;
+    }
+
+    private void SetObjPosition(GameObject obj, Transform targetTransform)
+    {
+        obj.transform.position = targetTransform.position;
     }
 }
