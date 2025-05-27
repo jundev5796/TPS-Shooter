@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject bulletObj;
     [SerializeField] private float maxShootDelay = 0.2f;
     [SerializeField] private float currentShootDelay = 0.2f;
+    [SerializeField] private Text bulletText;
+    private int maxBullet = 30;
+    private int currentBullet = 0;
 
     [Header("Weapon FX")]
     [SerializeField] private GameObject weaponFlashFX;
@@ -22,20 +26,22 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         currentShootDelay = 0;
+        InitBullet();
     }
 
     void Update()
     {
-        
+        bulletText.text = currentBullet + " / " + maxBullet;
     }
 
     public void Shooting(Vector3 targetPosition)
     {
         currentShootDelay += Time.deltaTime;
 
-        if (currentShootDelay < maxShootDelay)
+        if (currentShootDelay < maxShootDelay || currentBullet <= 0)
             return;
 
+        currentBullet -= 1;
         currentShootDelay = 0;
 
         Instantiate(weaponFlashFX, bulletPoint);
@@ -48,5 +54,11 @@ public class GameManager : MonoBehaviour
     public void ReloadClip()
     {
         Instantiate(weaponClipFX, weaponClipPoint);
+        InitBullet();
+    }
+
+    private void InitBullet()
+    {
+        currentBullet = maxBullet;
     }
 }
