@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         bulletText.text = currentBullet + " / " + maxBullet;
     }
 
-    public void Shooting(Vector3 targetPosition)
+    public void Shooting(Vector3 targetPosition, Enemy enemy)
     {
         currentShootDelay += Time.deltaTime;
 
@@ -58,6 +58,15 @@ public class GameManager : MonoBehaviour
         GameObject prefabToSpawn = PoolManager.instance.ActivateObj(0);
         SetObjPosition(prefabToSpawn, bulletPoint);
         prefabToSpawn.transform.rotation = Quaternion.LookRotation(aim, Vector3.up);
+
+        // Raycast
+        /*
+        if (enemy != null && enemy.enemyCurrentHP > 0)
+        {
+            enemy.enemyCurrentHP -= 1;
+            Debug.Log("enemy HP : " + enemy.enemyCurrentHP);
+        }
+        */
     }
 
     public void ReloadClip()

@@ -20,6 +20,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Rig handRig;
     [SerializeField] private Rig aimRig;
 
+    private Enemy enemy;
+
     void Start()
     {
         input = GetComponent<StarterAssetsInputs>();
@@ -74,6 +76,8 @@ public class PlayerManager : MonoBehaviour
                 //Debug.Log("Name: " + hit.transform.gameObject.name);
                 targetPosition = hit.point;
                 aimObj.transform.position = hit.point;
+
+                enemy = hit.collider.gameObject.GetComponent<Enemy>();
             }
             else
             {
@@ -92,7 +96,7 @@ public class PlayerManager : MonoBehaviour
             if (input.shoot)
             {
                 anim.SetBool("Shoot", true);
-                GameManager.instance.Shooting(targetPosition);
+                GameManager.instance.Shooting(targetPosition, enemy);
             }
             else
             {
